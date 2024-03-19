@@ -1,7 +1,8 @@
+import dictionary as d
 class RichWord:
     def __init__(self, parola):
         self._parola = parola # this is a string
-        self._corretta = None #this is a bool
+        self._corretta = False #this is a bool
 
     @property
     def corretta(self):
@@ -15,3 +16,5 @@ class RichWord:
 
     def __str__(self):
         return self._parola
+    def __repr__(self):
+        return f"{self._parola} - {self._corretta}"
