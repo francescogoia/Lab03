@@ -45,10 +45,47 @@ class MultiDictionary:
                     lista_reach_words.append(rw)
                     trovata = True
                     break
-                if trovata == False:
-                    rw = RichWord(word)
-                    lista_reach_words.append(rw)
+            if trovata == False:
+                rw = RichWord(word)
+                lista_reach_words.append(rw)
         return lista_reach_words
+
+    def searchWordDicotomic(self, words, language):
+        dizionario = self.dizionari[language]
+        ## words è la lista di parole da controllare
+        lista_reach_words = []
+        for word in words.split():
+            indice_trovata = ricerca_Dicotomica(dizionario._dict, word)
+            if indice_trovata != -1:
+                rw = RichWord(word)
+                rw.corretta = True
+                lista_reach_words.append(rw)
+            else:
+                rw = RichWord(word)
+                lista_reach_words.append(rw)
+        return lista_reach_words
+
+def ricerca_Dicotomica(lista, target):
+    """
+    restituisce l'indice dell'elemento cercato
+    :param lista:
+    :param low: indice iniziale
+    :param high:indice di arrivo (per la prima iterazione len(lista) -1
+    :param target:oggetto da cercare
+    :return:indice dell'elemento
+    """
+    low = 0
+    high = len(lista) - 1
+    mid = 0
+    while low <= high:
+        mid = (high - low) // 2
+        if lista[mid] == target:
+            return mid
+        elif lista[mid] > target:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return -1
 
 def test():
     md = MultiDictionary()

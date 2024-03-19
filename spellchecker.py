@@ -20,6 +20,11 @@ class SpellChecker:
         t1 = time.time()
         tempo = t1-t0
         risultato += printSearchWord("ricerca lineare", tempo, resoconto_lineare)+"\n"
+        t0 = time.time()
+        resoconto_dicotomica = self.multiDict.searchWordDicotomic(testo, language)
+        t1 = time.time()
+        tempo = t1 - t0
+        risultato += printSearchWord("ricerca dicotomica", tempo, resoconto_dicotomica) + "\n"
 
 
         return risultato
