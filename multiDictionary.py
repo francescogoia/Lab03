@@ -76,15 +76,15 @@ def ricerca_Dicotomica(lista, target):
     """
     low = 0
     high = len(lista) - 1
-    mid = 0
     while low <= high:
-        mid = (high - low) // 2
+        mid = low + (high - low) // 2
         if lista[mid] == target:
             return mid
-        elif lista[mid] > target:
-            high = mid - 1
-        else:
+        elif lista[mid] < target:
             low = mid + 1
+
+        else:
+            high = mid - 1
     return -1
 
 def test():
